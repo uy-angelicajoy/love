@@ -1,44 +1,94 @@
+/* --- Root Variables --- */
+:root {
+    --font-family: 'Brush Script MT', cursive, "Segoe UI", sans-serif;
+}
+
 /* --- Base page --- */
 body {
     background: #000;
-    height: 100vh;
     margin: 0;
-    overflow: hidden;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: var(--font-family);
+    scroll-behavior: smooth;
 }
 
-/* --- Quick links (translated) --- */
-.quick-link {
-    position: fixed;
-    right: 10px;
-    width: 35px;
-    height: 35px;
-    z-index: 999;
-    background: #696969;
-    border-radius: 50%;
-    padding: 1px;
-    text-align: center;
-    color: #ddd;
-    text-decoration: none;
-    line-height: 35px;
-    font-size: 13px;
-    user-select: none;
+/* --- Sections --- */
+.section-scroll {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
 }
-.quick-link:nth-of-type(1) {
+
+#love {
+    background: #000;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#love .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%) brightness(0.4) contrast(1.1);
+}
+
+#collage {
+    background: #2a2a2a;
+    padding: 120px 20px 40px;
+}
+
+#message {
+    background: #fae1dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Navigation --- */
+.main-nav {
+    position: fixed;
     top: 10%;
-} /* Create */
-.quick-link:nth-of-type(2) {
-    top: 4%;
-    z-index: 998;
-} /* More */
-.quick-link:nth-of-type(3) {
-    top: 16%;
-    z-index: 997;
-} /* Source Code */
-.quick-link:nth-of-type(4) {
-    top: 22%;
-    z-index: 996;
-} /* Gift */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: flex;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 25px 40px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(234, 128, 176, 0.3);
+    box-shadow: 0 0 30px rgba(234, 128, 176, 0.2);
+}
+
+.nav-link {
+    color: #ea80b0;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(234, 128, 176, 0.5);
+}
+
+.nav-link:hover {
+    background: rgba(234, 128, 176, 0.2);
+    transform: scale(1.1);
+    text-shadow: 0 0 20px #ea80b0;
+}
+
+.nav-link.active {
+    background: rgba(234, 128, 176, 0.3);
+    box-shadow: 0 0 20px rgba(234, 128, 176, 0.4);
+}
 
 /* --- Love words --- */
 #ui .love {
@@ -49,11 +99,13 @@ body {
     /* per-item delay via CSS variable --i (1..N) */
     --i: 1;
 }
+
 #ui .love:last-child .love_word {
     color: #fff;
     font-size: 2rem;
     text-shadow: 0 0 10px #ea80b0;
 }
+
 /* Make the last item match the others */
 #ui .love:last-child .love_word {
     color: #ea80b0;
@@ -150,5 +202,403 @@ body {
     }
     100% {
         transform: translateY(180px);
+    }
+}
+
+/* --- Polaroid Collage --- */
+.polaroid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.polaroid {
+    background: #fff;
+    padding: 15px;
+    padding-bottom: 60px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: rotate(var(--rotation, 0deg));
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.polaroid-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.polaroid-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) contrast(1.1);
+}
+
+.polaroid-caption {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    color: #333;
+    font-size: 16px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* --- Message Section --- */
+.message-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-container {
+    position: relative;
+}
+
+.valentines {
+    position: relative;
+    top: 50px;
+    cursor: pointer;
+    animation: up 3s linear infinite;
+}
+
+@keyframes up {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #f08080;
+}
+
+.envelope:before {
+    background-color: #f08080;
+    content: "";
+    position: absolute;
+    width: 212px;
+    height: 212px;
+    transform: rotate(45deg);
+    top: -105px;
+    left: 44px;
+    border-radius: 30px 0 0 0;
+}
+
+.card {
+    position: absolute;
+    background-color: #eae2b7;
+    width: 270px;
+    height: 170px;
+    top: 10px;
+    left: 15px;
+    box-shadow: -5px -5px 100px rgba(0, 0, 0, 0.4);
+    transition: top 0.5s ease;
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    border: 3px solid #003049;
+    border-style: dotted;
+    width: 240px;
+    height: 140px;
+    left: 12px;
+    top: 12px;
+}
+
+.text {
+    position: inherit;
+    font-family: var(--font-family);
+    font-size: 28px;
+    text-align: center;
+    line-height: 25px;
+    top: 20px;
+    left: 5px;
+    color: #003049;
+}
+
+.heart {
+    background-color: #d62828;
+    display: inline-block;
+    height: 30px;
+    margin: 0 10px;
+    position: relative;
+    top: 117px;
+    left: 110px;
+    transform: rotate(-45deg);
+    width: 30px;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    background-color: #d62828;
+    border-radius: 60%;
+    height: 30px;
+    position: absolute;
+    width: 30px;
+}
+
+.heart:before {
+    top: -15px;
+    left: 0;
+}
+
+.heart:after {
+    left: 15px;
+    top: 0;
+}
+
+.hearts {
+    position: absolute;
+}
+
+.one, .two, .three, .four, .five {
+    background-color: red;
+    display: inline-block;
+    height: 10px;
+    margin: 0 10px;
+    position: relative;
+    transform: rotate(-45deg);
+    width: 10px;
+    top: 50px;
+}
+
+.one:before, .one:after,
+.two:before, .two:after,
+.three:before, .three:after,
+.four:before, .four:after,
+.five:before, .five:after {
+    content: "";
+    background-color: red;
+    border-radius: 50%;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+}
+
+.one:before, .two:before, .three:before, .four:before, .five:before {
+    top: -5px;
+    left: 0;
+}
+
+.one:after, .two:after, .three:after, .four:after, .five:after {
+    left: 5px;
+    top: 0;
+}
+
+.one {
+    left: 10px;
+    animation: heart 1s ease-out infinite;
+}
+
+.two {
+    left: 30px;
+    animation: heart 2s ease-out infinite;
+}
+
+.three {
+    left: 50px;
+    animation: heart 1.5s ease-out infinite;
+}
+
+.four {
+    left: 70px;
+    animation: heart 2.3s ease-out infinite;
+}
+
+.five {
+    left: 90px;
+    animation: heart 1.7s ease-out infinite;
+}
+
+@keyframes heart {
+    0% {
+        transform: translateY(0) rotate(-45deg) scale(0.3);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) rotate(-45deg) scale(1.3);
+        opacity: 0.5;
+    }
+}
+
+.front {
+    position: absolute;
+    border-right: 180px solid #f4978e;
+    border-top: 95px solid transparent;
+    border-bottom: 100px solid transparent;
+    left: 120px;
+    top: 5px;
+    width: 0;
+    height: 0;
+    z-index: 10;
+}
+
+.front:before {
+    position: absolute;
+    content: "";
+    border-left: 300px solid #f8ad9d;
+    border-top: 195px solid transparent;
+    left: -120px;
+    top: -95px;
+    width: 0;
+    height: 0;
+}
+
+.shadow {
+    position: absolute;
+    width: 330px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 265px;
+    left: -15px;
+    animation: scale 3s linear infinite;
+    z-index: -1;
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(0.85);
+    }
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+    .main-nav {
+        top: 30px;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 15px;
+        padding: 15px 20px;
+        width: calc(100% - 40px);
+        max-width: 500px;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+
+    /* Love section mobile adjustments */
+    #ui {
+        width: 300px;
+        height: 300px;
+    }
+
+    #ui .love {
+        margin: -150px 0 0 -150px;
+    }
+
+    #ui .love_word {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    #ui .love:last-child .love_word {
+        font-size: 1rem;
+    }
+
+    #collage {
+        padding: 100px 10px 20px;
+    }
+
+    .polaroid-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .polaroid {
+        padding: 10px;
+        padding-bottom: 45px;
+    }
+
+    .polaroid-caption {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-nav {
+        gap: 10px;
+        padding: 12px 15px;
+    }
+
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 8px 15px;
+    }
+
+    /* Love section mobile adjustments */
+    #ui {
+        width: 200px;
+        height: 200px;
+    }
+
+    #ui .love {
+        margin: -100px 0 0 -100px;
+    }
+
+    #ui .love_word {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    #ui .love:last-child .love_word {
+        font-size: 0.85rem;
+    }
+
+    .polaroid-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .polaroid {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Extra small screens */
+    #ui {
+        width: 160px;
+        height: 160px;
+    }
+
+    #ui .love {
+        margin: -80px 0 0 -80px;
+    }
+
+    #ui .love_word {
+        font-size: 0.75rem;
+    }
+
+    #ui .love:last-child .love_word {
+        font-size: 0.75rem;
     }
 }
