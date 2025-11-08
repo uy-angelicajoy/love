@@ -1,6 +1,6 @@
 /* --- Root Variables --- */
 :root {
-    --font-family: 'Brush Script MT', cursive, "Segoe UI", sans-serif;
+    --font-family: "Brush Script MT", cursive, "Segoe UI", sans-serif;
 }
 
 /* --- Base page --- */
@@ -95,7 +95,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -225px 0 0 -225px;
+    margin: -205px 0 0 -270px;
     /* per-item delay via CSS variable --i (1..N) */
     --i: 1;
 }
@@ -243,12 +243,11 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: grayscale(100%) contrast(1.1);
 }
 
 .polaroid-caption {
     text-align: center;
-    font-family: 'Courier New', monospace;
+    font-family: "Courier New", monospace;
     color: #333;
     font-size: 16px;
     margin-top: 15px;
@@ -275,7 +274,8 @@ body {
 }
 
 @keyframes up {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(0);
     }
     50% {
@@ -331,7 +331,7 @@ body {
     text-align: center;
     line-height: 25px;
     top: 20px;
-    left: 5px;
+    left: 30px;
     color: #003049;
 }
 
@@ -371,7 +371,11 @@ body {
     position: absolute;
 }
 
-.one, .two, .three, .four, .five {
+.one,
+.two,
+.three,
+.four,
+.five {
     background-color: red;
     display: inline-block;
     height: 10px;
@@ -382,11 +386,16 @@ body {
     top: 50px;
 }
 
-.one:before, .one:after,
-.two:before, .two:after,
-.three:before, .three:after,
-.four:before, .four:after,
-.five:before, .five:after {
+.one:before,
+.one:after,
+.two:before,
+.two:after,
+.three:before,
+.three:after,
+.four:before,
+.four:after,
+.five:before,
+.five:after {
     content: "";
     background-color: red;
     border-radius: 50%;
@@ -395,12 +404,20 @@ body {
     width: 10px;
 }
 
-.one:before, .two:before, .three:before, .four:before, .five:before {
+.one:before,
+.two:before,
+.three:before,
+.four:before,
+.five:before {
     top: -5px;
     left: 0;
 }
 
-.one:after, .two:after, .three:after, .four:after, .five:after {
+.one:after,
+.two:after,
+.three:after,
+.four:after,
+.five:after {
     left: 5px;
     top: 0;
 }
@@ -477,7 +494,8 @@ body {
 }
 
 @keyframes scale {
-    0%, 100% {
+    0%,
+    100% {
         transform: scaleX(1);
     }
     50% {
